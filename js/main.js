@@ -37,8 +37,6 @@ let shoppingIcon = document.querySelector(".shopping-icon");
 let addedToCartList = document.querySelector(".added-to-cart-list");
 let indicator = document.querySelector(".indicator");
 indicator.innerHTML = localStorage.getItem("indicator");
-let card = document.querySelectorAll(".card");
-let productsContainer = document.querySelector(".products .container");
 let products = mainProductsArray;
 // check if there is data in local storage and get it back
 if (window.localStorage.getItem("products")) {
@@ -88,18 +86,18 @@ function appendProductsToPage(productss) {
   });
   section.appendChild(container);
 }
+let card = document.querySelectorAll(".card");
+let productsContainer = document.querySelector(".products .container");
 card.forEach(function(card){
   card.addEventListener("click", function(event){
     let productName = event.target.parentElement.parentElement.firstChild.innerHTML;
     if(event.target.classList.contains("add-to-cart-btn")){
-      console.log(productName);
       products.forEach((product) => {
         if (product.name == productName) {
           // product.addedToCart == true ? product.addedToCart = false : product.addedToCart = true;
           let btn = card.childNodes[1].childNodes[2].firstElementChild;
           if(product.addedToCart === true){
             product.addedToCart = false;
-            console.log("Hellooooo");
             btn.innerHTML = "add to cart";
             localStorage.setItem("indicator", --indicator.innerHTML);
             // addedToCartList.firstElementChild.removeChild(addedToCartList.firstElementChild);
